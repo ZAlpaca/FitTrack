@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#444933",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1c1c",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-fixed": "#1b1b1d",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "secondary-container": "#474746",
+                    "primary": "#ffffff",
+                    "on-surface-variant": "#c4c9ac",
+                    "surface-container-lowest": "#0c0f0f",
+                    "inverse-surface": "#e2e2e2",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary": "#313030",
+                    "on-tertiary": "#303032",
+                    "tertiary": "#ffffff",
+                    "on-primary-fixed": "#161e00",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#2f3131",
+                    "surface-bright": "#37393a",
+                    "surface-container-high": "#282a2b",
+                    "background": "#121414",
+                    "surface": "#121414",
+                    "on-tertiary-fixed-variant": "#474649",
+                    "surface-dim": "#121414",
+                    "primary-fixed-dim": "#abd600",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "secondary": "#c8c6c5",
+                    "primary-container": "#c3f400",
+                    "surface-container": "#1e2020",
+                    "inverse-primary": "#506600",
+                    "on-tertiary-container": "#656466",
+                    "tertiary-fixed": "#e4e2e4",
+                    "primary-fixed": "#c3f400",
+                    "on-background": "#e2e2e2",
+                    "on-primary-container": "#556d00",
+                    "on-primary": "#283500",
+                    "outline": "#8e9379",
+                    "tertiary-fixed-dim": "#c8c6c8",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-variant": "#333535",
+                    "tertiary-container": "#e4e2e4",
+                    "surface-tint": "#abd600",
+                    "surface-container-highest": "#333535"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "12px",
+                    "section-gap": "40px",
+                    "base": "8px",
+                    "container-margin": "20px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "metric-xl": ["Inter"],
+                    "display-xl": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "metric-xl": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #000000; color: #e2e2e2; -webkit-font-smoothing: antialiased; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .volt-glow {
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
+        }
+        .progress-bar-track {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background: #CCFF00;
+            height: 100%;
+            border-radius: 4px;
+            box-shadow: 0 0 12px rgba(204, 255, 0, 0.5);
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a fit athlete in their late 20s, looking confidently at the camera. The lighting is dramatic and moody, with cool blue and neon green rim lights that emphasize athletic definition. The background is a dark, high-end digital gym environment, maintaining a premium and focused aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDudEBqW5R49pkZWCWM_BOtSFJJsuWX7Vmt_J5n5YrwNfeSYLlatQ5sjCETckukq4a7RyJPnNVlDLbj_c-ExcPdN_ewLq2o3-fiq26qht1Za6bXCH0uj1me9mXUsn2zsrgYwq7jirB80UM-rEbri870FALin2PFZJg7QMgkD9TPvgUDLepCTEzT9phPbHRTvARBzOHbMqcJ8sPWE6cU_OmfywElgAZBPT-sWmWsvAQ5w8yb53AGei0E3CGeTpptNissPjuaSyBOCKg"/>
+</div>
+<h1 class="font-title-md text-title-md-mobile text-primary">Good morning, Athlete</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</button>
+</header>
+<main class="pt-24 px-container-margin">
+<!-- Hero Title Section -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Your Goals</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Stay focused. High performance requires clear targets.</p>
+</section>
+<!-- Goals Grid -->
+<div class="flex flex-col gap-gutter">
+<!-- Weight Loss Goal -->
+<div class="glass-card p-stack-lg rounded-lg relative overflow-hidden group">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<p class="font-label-caps text-label-caps text-primary-container mb-1">CURRENT FOCUS</p>
+<h3 class="font-title-md text-title-md-mobile text-primary">Weight Loss</h3>
+</div>
+<div class="text-right">
+<span class="font-metric-xl text-metric-xl text-primary">82%</span>
+</div>
+</div>
+<div class="progress-bar-track mb-stack-md">
+<div class="progress-bar-fill" style="width: 82%"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>172.4 lbs</span>
+<span>Target: 168.0 lbs</span>
+</div>
+<!-- Subtle background visual -->
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">monitor_weight</span>
+</div>
+</div>
+<!-- Weekly Miles Goal -->
+<div class="glass-card p-stack-lg rounded-lg relative overflow-hidden group">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<p class="font-label-caps text-label-caps text-primary-container mb-1">WEEKLY TARGET</p>
+<h3 class="font-title-md text-title-md-mobile text-primary">Weekly Miles</h3>
+</div>
+<div class="text-right">
+<span class="font-metric-xl text-metric-xl text-primary">45%</span>
+</div>
+</div>
+<div class="progress-bar-track mb-stack-md">
+<div class="progress-bar-fill" style="width: 45%"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>11.2 mi</span>
+<span>Target: 25.0 mi</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">directions_run</span>
+</div>
+</div>
+<!-- Strength Training Goal -->
+<div class="glass-card p-stack-lg rounded-lg relative overflow-hidden group">
+<div class="flex justify-between items-start mb-stack-md">
+<div>
+<p class="font-label-caps text-label-caps text-primary-container mb-1">SESSIONS</p>
+<h3 class="font-title-md text-title-md-mobile text-primary">Strength Training</h3>
+</div>
+<div class="text-right">
+<span class="font-metric-xl text-metric-xl text-primary">75%</span>
+</div>
+</div>
+<div class="progress-bar-track mb-stack-md">
+<div class="progress-bar-fill" style="width: 75%"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>3 of 4 workouts</span>
+<span>Deadline: Sunday</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+</div>
+<!-- Add New Goal Button -->
+<button class="w-full py-stack-lg rounded-lg border-2 border-dashed border-white/10 flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-[0.98] transition-all duration-200 text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+<span class="font-title-md text-title-md-mobile">Add New Goal</span>
+</button>
+</div>
+<!-- Monthly Insights Section -->
+<section class="mt-section-gap mb-10">
+<h3 class="font-title-md text-title-md-mobile text-primary mb-4">Goal Performance</h3>
+<div class="glass-card p-stack-lg rounded-lg h-48 flex items-end justify-between gap-2 overflow-hidden">
+<!-- Bar Chart Representation -->
+<div class="flex-1 bg-primary-fixed-dim/20 rounded-t-sm h-[40%] transition-all hover:h-[50%] cursor-help"></div>
+<div class="flex-1 bg-primary-fixed-dim/40 rounded-t-sm h-[65%] transition-all hover:h-[75%] cursor-help"></div>
+<div class="flex-1 bg-primary-fixed-dim/30 rounded-t-sm h-[55%] transition-all hover:h-[65%] cursor-help"></div>
+<div class="flex-1 bg-primary-fixed-dim/60 rounded-t-sm h-[80%] transition-all hover:h-[90%] cursor-help"></div>
+<div class="flex-1 bg-primary-fixed-dim/50 rounded-t-sm h-[70%] transition-all hover:h-[80%] cursor-help"></div>
+<div class="flex-1 bg-primary-fixed-dim/90 rounded-t-sm h-[95%] volt-glow transition-all hover:h-[100%] cursor-help"></div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[30%] transition-all hover:h-[40%] cursor-help"></div>
+</div>
+<div class="flex justify-between mt-2 px-2 font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span class="text-primary-container">Sat</span><span>Sun</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-white/10 backdrop-blur-2xl border-t border-white/15 rounded-t-xl shadow-[0_-4px_24px_rgba(171,214,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-label-caps mt-1">Workouts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-caps text-label-caps mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for progress bar loading
+        window.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            progressBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Athlete Calendar - High Performance Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .neon-glow-primary {
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day-cell {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .active-day-border {
+            border: 1px solid #CCFF00;
+            box-shadow: inset 0 0 8px rgba(204, 255, 0, 0.2);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1a1c1c",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#1b1b1d",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "secondary-container": "#474746",
+                        "primary": "#ffffff",
+                        "on-surface-variant": "#c4c9ac",
+                        "surface-container-lowest": "#0c0f0f",
+                        "inverse-surface": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "on-tertiary": "#303032",
+                        "tertiary": "#ffffff",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-bright": "#37393a",
+                        "surface-container-high": "#282a2b",
+                        "background": "#121414",
+                        "surface": "#121414",
+                        "on-tertiary-fixed-variant": "#474649",
+                        "surface-dim": "#121414",
+                        "primary-fixed-dim": "#abd600",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "primary-container": "#c3f400",
+                        "surface-container": "#1e2020",
+                        "inverse-primary": "#506600",
+                        "on-tertiary-container": "#656466",
+                        "tertiary-fixed": "#e4e2e4",
+                        "primary-fixed": "#c3f400",
+                        "on-background": "#e2e2e2",
+                        "on-primary-container": "#556d00",
+                        "on-primary": "#283500",
+                        "outline": "#8e9379",
+                        "tertiary-fixed-dim": "#c8c6c8",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-variant": "#333535",
+                        "tertiary-container": "#e4e2e4",
+                        "surface-tint": "#abd600",
+                        "surface-container-highest": "#333535"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "section-gap": "40px",
+                        "base": "8px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "stack-sm": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "metric-xl": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "metric-xl": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black text-on-surface min-h-screen pb-32 overflow-x-hidden no-scrollbar">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-contrast close-up portrait of a determined elite athlete with soft lighting hitting their face. The background is a dark, moody gym environment with subtle lens flares. The overall aesthetic is premium, high-tech, and minimal, using deep blacks and cool tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAILVpr-aZPq7Hx-FWPcAU_TH0Oq-0Bx3bHxWT_rHjiC0fzGjqW5oPdvzUlRP_iHboHHyrZM2lF9EhNZq601yeWv8i2xB2CjZ2Quh4B0bK_BELlEoBe9c7ZfpbH8F40vYD18pQXd_AVDeECu9tSnIE-TbYZhy8AI2pxfTaySkxYBpkAsmemzR2QxHRz3BfpDWEpsNZAadrmKoxe3vgldcB4Ru0vfUSZnooksoK6akEH4U4hLZm5Q2mZiAOsKBaNlNGQr_tI79KU_Sk"/>
+</div>
+<h1 class="font-title-md text-title-md-mobile text-primary">Good morning, Athlete</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+</button>
+</header>
+<main class="mt-24 px-container-margin">
+<!-- Month Selector -->
+<section class="mb-8 flex justify-between items-center">
+<div class="flex flex-col">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">October 2024</h2>
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">18 Sessions Completed</span>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-card">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-card">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Calendar Grid -->
+<section class="mb-section-gap">
+<div class="calendar-grid mb-2">
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">S</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">M</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">T</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">W</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">T</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">F</div>
+<div class="text-center text-label-caps font-label-caps text-on-surface-variant">S</div>
+</div>
+<div class="calendar-grid">
+<!-- Day cells (Example data) -->
+<div class="day-cell text-on-surface-variant opacity-30 font-body-sm text-body-sm">29</div>
+<div class="day-cell text-on-surface-variant opacity-30 font-body-sm text-body-sm">30</div>
+<!-- Oct 1st -->
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">1</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell">
+<span class="font-body-sm text-body-sm text-on-surface-variant">2</span>
+</div>
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">3</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">4</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell">
+<span class="font-body-sm text-body-sm text-on-surface-variant">5</span>
+</div>
+<!-- Week 2 -->
+<div class="day-cell">
+<span class="font-body-sm text-body-sm text-on-surface-variant">6</span>
+</div>
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">7</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell active-day-border rounded-lg bg-primary-container/10">
+<span class="font-body-sm text-body-sm text-primary-container font-bold">8</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">9</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell">
+<span class="font-body-sm text-body-sm text-on-surface-variant">10</span>
+</div>
+<div class="day-cell glass-card rounded-lg border-none">
+<span class="font-body-sm text-body-sm text-primary">11</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div>
+</div>
+<div class="day-cell">
+<span class="font-body-sm text-body-sm text-on-surface-variant">12</span>
+</div>
+<!-- Remaining placeholder cells -->
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">13</span></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">14</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">15</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">16</span></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">17</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">18</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">19</span></div>
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">20</span></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">21</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">22</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">23</span></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">24</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell glass-card rounded-lg border-none"><span class="font-body-sm text-body-sm text-primary">25</span><div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1 neon-glow-primary"></div></div>
+<div class="day-cell"><span class="font-body-sm text-body-sm text-on-surface-variant">26</span></div>
+</div>
+</section>
+<!-- Selected Day Summary -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-label-caps font-label-caps text-on-surface-variant tracking-widest uppercase">Tuesday, October 8</span>
+<div class="h-px flex-1 bg-white/10"></div>
+</div>
+<div class="glass-card rounded-lg p-6 relative overflow-hidden">
+<!-- Background decorative mesh -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-container/10 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-title-md text-title-md-mobile text-primary mb-1">HIIT &amp; Strength</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lower Body Focus • 45 min</p>
+</div>
+<div class="bg-primary-container/20 px-3 py-1 rounded-full">
+<span class="text-label-caps font-label-caps text-primary-container">COMPLETED</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase text-[10px]">Calories</span>
+<span class="font-title-md text-title-md-mobile text-primary">482 <span class="text-body-sm font-normal text-on-surface-variant">kcal</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase text-[10px]">Avg HR</span>
+<span class="font-title-md text-title-md-mobile text-primary">154 <span class="text-body-sm font-normal text-on-surface-variant">bpm</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase text-[10px]">Effort</span>
+<span class="font-title-md text-title-md-mobile text-primary">8.5 <span class="text-body-sm font-normal text-on-surface-variant">/10</span></span>
+</div>
+</div>
+<button class="w-full bg-primary-container py-3 rounded-full text-black font-bold font-label-caps tracking-wider neon-glow-primary active:scale-95 transition-all">
+                    VIEW WORKOUT DETAILS
+                </button>
+</div>
+</section>
+<!-- Extra Stats Section (Bento Style) -->
+<section class="mt-section-gap grid grid-cols-2 gap-4 pb-12">
+<div class="glass-card rounded-lg p-4 col-span-1">
+<span class="material-symbols-outlined text-primary-container mb-2" data-icon="local_fire_department">local_fire_department</span>
+<p class="text-label-caps font-label-caps text-on-surface-variant uppercase text-[10px]">Streak</p>
+<p class="font-title-md text-title-md-mobile text-primary">12 Days</p>
+</div>
+<div class="glass-card rounded-lg p-4 col-span-1">
+<span class="material-symbols-outlined text-primary-container mb-2" data-icon="speed">speed</span>
+<p class="text-label-caps font-label-caps text-on-surface-variant uppercase text-[10px]">Intensity</p>
+<p class="font-title-md text-title-md-mobile text-primary">+14%</p>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 border-t border-white/15 bg-white/10 backdrop-blur-2xl rounded-t-xl shadow-[0_-4px_24px_rgba(171,214,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-caps text-label-caps mt-1">Workouts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-caps text-label-caps mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.day-cell').forEach(cell => {
+            cell.addEventListener('click', function() {
+                // Remove previous active state
+                document.querySelectorAll('.day-cell').forEach(c => {
+                    c.classList.remove('active-day-border', 'bg-primary-container/10');
+                    if (c.querySelector('span')) c.querySelector('span').classList.remove('text-primary-container', 'font-bold');
+                });
+                
+                // Add new active state
+                this.classList.add('active-day-border', 'bg-primary-container/10');
+                const span = this.querySelector('span');
+                if (span) {
+                    span.classList.add('text-primary-container', 'font-bold');
+                }
+
+                // Smooth scale effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => this.style.transform = 'scale(1)', 100);
+            });
+        });
+
+        // Floating appearance for glass cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.classList.add('transition-all', 'duration-500', 'ease-out');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

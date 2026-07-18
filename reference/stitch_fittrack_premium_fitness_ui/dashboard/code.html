@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>FitTrack Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(204, 255, 0, 0.4);
+        }
+        .ring-container {
+            filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.2));
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<!-- Tailwind Theme Config Injection -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#444933",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1c1c",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-surface": "#e2e2e2",
+                    "on-tertiary-fixed": "#1b1b1d",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "secondary-container": "#474746",
+                    "primary": "#ffffff",
+                    "on-surface-variant": "#c4c9ac",
+                    "surface-container-lowest": "#0c0f0f",
+                    "inverse-surface": "#e2e2e2",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-secondary": "#313030",
+                    "on-tertiary": "#303032",
+                    "tertiary": "#ffffff",
+                    "on-primary-fixed": "#161e00",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#2f3131",
+                    "surface-bright": "#37393a",
+                    "surface-container-high": "#282a2b",
+                    "background": "#121414",
+                    "surface": "#121414",
+                    "on-tertiary-fixed-variant": "#474649",
+                    "surface-dim": "#121414",
+                    "primary-fixed-dim": "#abd600",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "secondary": "#c8c6c5",
+                    "primary-container": "#c3f400",
+                    "surface-container": "#1e2020",
+                    "inverse-primary": "#506600",
+                    "on-tertiary-container": "#656466",
+                    "tertiary-fixed": "#e4e2e4",
+                    "primary-fixed": "#c3f400",
+                    "on-background": "#e2e2e2",
+                    "on-primary-container": "#556d00",
+                    "on-primary": "#283500",
+                    "outline": "#8e9379",
+                    "tertiary-fixed-dim": "#c8c6c8",
+                    "error-container": "#93000a",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface-variant": "#333535",
+                    "tertiary-container": "#e4e2e4",
+                    "surface-tint": "#abd600",
+                    "surface-container-highest": "#333535"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "12px",
+                    "section-gap": "40px",
+                    "base": "8px",
+                    "container-margin": "20px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "stack-sm": "4px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "metric-xl": ["Inter"],
+                    "display-xl": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "metric-xl": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center w-full px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a fit athlete with a determined expression, captured in a high-contrast cinematic lighting style against a dark charcoal background. The athlete has subtle moisture on their skin to suggest a recent workout. The overall aesthetic is premium, high-performance, and sophisticated, aligning with a luxury dark-mode fitness application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNebSj7J8S46h58ijYpfkeEqf0qSZ0ZRHfjL8Iy4WfVV4YMHLb3P45XWLD4K5MY0ZmxmDCytNEs2WBq1DVSmD_6o_0KZCZI1S18N1TEpEfWJpvbYYRwmFxMbU5PmPKiCJLmMoyBHTRmYjS5gSeN-qiQNsWM0RmQ0LfGc73kJY0XcHMZdXsAR5TJn49pc-G50odWlDs30xFPMPYK4iDFrJEemJ44xZjQ3fhGPnwakBGR_e7WrIoRBP-5Q5T88x22GDitAhm-vlz8eE"/>
+</div>
+<h1 class="font-title-md text-title-md-mobile text-primary">Good morning, Athlete</h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+</header>
+<main class="pt-24 px-container-margin space-y-section-gap">
+<!-- Activity Rings Section -->
+<section class="flex flex-col items-center">
+<div class="relative w-64 h-64 ring-container flex items-center justify-center">
+<!-- Move Ring (Outer) -->
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="opacity-100" cx="50" cy="50" fill="none" r="45" stroke="#fa114f" stroke-dasharray="282.7" stroke-dashoffset="70" stroke-linecap="round" stroke-width="8"></circle>
+<circle class="opacity-20" cx="50" cy="50" fill="none" r="45" stroke="#fa114f" stroke-width="8"></circle>
+</svg>
+<!-- Exercise Ring (Middle) -->
+<svg class="absolute inset-0 w-full h-full -rotate-90 p-4" viewbox="0 0 100 100">
+<circle class="opacity-100" cx="50" cy="50" fill="none" r="45" stroke="#abd600" stroke-dasharray="282.7" stroke-dashoffset="120" stroke-linecap="round" stroke-width="10"></circle>
+<circle class="opacity-20" cx="50" cy="50" fill="none" r="45" stroke="#abd600" stroke-width="10"></circle>
+</svg>
+<!-- Stand Ring (Inner) -->
+<svg class="absolute inset-0 w-full h-full -rotate-90 p-9" viewbox="0 0 100 100">
+<circle class="opacity-100" cx="50" cy="50" fill="none" r="45" stroke="#00e5ff" stroke-dasharray="282.7" stroke-dashoffset="200" stroke-linecap="round" stroke-width="14"></circle>
+<circle class="opacity-20" cx="50" cy="50" fill="none" r="45" stroke="#00e5ff" stroke-width="14"></circle>
+</svg>
+<!-- Central Icon -->
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary-fixed text-4xl neon-glow" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+<!-- Ring Legend -->
+<div class="flex gap-6 mt-8">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#fa114f]"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Move</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-fixed-dim"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Exercise</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#00e5ff]"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Stand</span>
+</div>
+</div>
+</section>
+<!-- Biometric Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Steps Card (Double height or custom) -->
+<div class="glass-card col-span-2 p-6 rounded-lg flex justify-between items-end relative overflow-hidden group">
+<div class="z-10">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase tracking-widest">Daily Steps</p>
+<h2 class="font-metric-xl text-metric-xl text-primary">12,482</h2>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12% from yesterday
+                    </p>
+</div>
+<div class="w-1/2 h-20 z-10">
+<!-- Simple SVG Line Chart -->
+<svg class="w-full h-full" viewbox="0 0 100 40">
+<path d="M0 35 Q 20 30, 40 38 T 80 10 T 100 5" fill="none" stroke="#abd600" stroke-linecap="round" stroke-width="3"></path>
+<path class="opacity-20" d="M0 35 Q 20 30, 40 38 T 80 10 T 100 5 V 40 H 0 Z" fill="url(#grad)"></path>
+<defs>
+<lineargradient id="grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#abd600;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#abd600;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- Calories Card -->
+<div class="glass-card p-5 rounded-lg">
+<span class="material-symbols-outlined text-error mb-3" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Calories</p>
+<h3 class="font-title-md text-title-md-mobile text-primary">842 <span class="text-body-sm font-normal text-on-surface-variant">kcal</span></h3>
+</div>
+<!-- Heart Rate Card -->
+<div class="glass-card p-5 rounded-lg">
+<span class="material-symbols-outlined text-[#fa114f] mb-3" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Heart Rate</p>
+<h3 class="font-title-md text-title-md-mobile text-primary">72 <span class="text-body-sm font-normal text-on-surface-variant">bpm</span></h3>
+</div>
+</section>
+<!-- Recent Workouts Horizontal Scroll -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Recent Workouts</h2>
+<button class="text-primary-fixed-dim font-label-caps text-label-caps uppercase">View All</button>
+</div>
+<div class="flex gap-gutter overflow-x-auto hide-scrollbar -mx-container-margin px-container-margin pb-4">
+<!-- Workout Card 1 -->
+<div class="min-w-[280px] h-48 rounded-lg relative overflow-hidden glass-card group flex flex-col justify-end p-5">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="A moody, high-contrast action shot of a person performing a heavy barbell back squat in a dimly lit, high-end gym. Dramatic rim lighting outlines the muscles and the bar, creating a powerful, elite atmosphere. The color palette is dominated by deep blacks and cool greys with a subtle lime-green neon accent light reflecting off the floor. Premium, high-resolution aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARR76lfeZIz5XbnnXbUb-9YcUfXKI0FK0Emd2nBk_zBc4kLr52gsahyHHZ7bwRzu9XNG4YUQ4lPokay4Zsn4NsOAIAahHVNDKhx0jV3KQSQ9oYHNR9-3ppZXbYmBdFE7yqVaxJHunhKgayCAixf65mlxRDciozBt5FrW1OoJTmAoa5trYdXymDTmueLnP3XGYASb0qSRbLiVGms3IOZq-pcjUlnQ3b8F72ydkVwLEQfbqADMGdFrE34y1SqSApx2Hc8-yTsg9aNGI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-caps text-[10px] uppercase mb-2 inline-block">Strength</span>
+<h4 class="font-title-md text-title-md-mobile text-primary">Full Body Power</h4>
+<div class="flex gap-4 mt-1 opacity-80">
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">schedule</span> 45m</span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">local_fire_department</span> 320 kcal</span>
+</div>
+</div>
+</div>
+<!-- Workout Card 2 -->
+<div class="min-w-[280px] h-48 rounded-lg relative overflow-hidden glass-card group flex flex-col justify-end p-5">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="A dynamic, wide-angle shot of a trail runner moving swiftly through a dark, foggy forest at dawn. The runner is captured in mid-stride, with a sense of speed and focus. The lighting is ethereal and cool-toned, with sharp, neon-green highlights tracing the runner's high-tech apparel. The mood is intense, lonely, and hyper-focused. Professional cinematic photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv_QlpbRxopgxLFVHeqgHpnJ9HVJkz1H5htG9x13_tD3X1fXN_8bd533bQsE-Fi1A6HfVM34GmW_5EG5yM5H-iHWl_YavyAx1NXoJdcZbV3CObfuRTud2BtcNY_kiuTaesE3oSwHvPUDePqfZMgKKRLrOFIRDcUwwl0pL_Dew-U6T6N23HAOZQjVh8WRr63LahH7D9f7uoJpEouJU2NaRUp6y18ywBVnTtmcDzFwjyow6e_y14oQAfvkAQlFu7UU4ySCzqGvmJDD4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-caps text-[10px] uppercase mb-2 inline-block">Cardio</span>
+<h4 class="font-title-md text-title-md-mobile text-primary">Night Trail Run</h4>
+<div class="flex gap-4 mt-1 opacity-80">
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">schedule</span> 32m</span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">local_fire_department</span> 410 kcal</span>
+</div>
+</div>
+</div>
+<!-- Workout Card 3 -->
+<div class="min-w-[280px] h-48 rounded-lg relative overflow-hidden glass-card group flex flex-col justify-end p-5">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" data-alt="A serene yet powerful image of a person practicing advanced yoga poses on a matte black mat in a minimalist, glass-walled studio overlooking a city skyline at night. The lighting is soft and moody, with the city's neon lights creating a bokeh effect in the background. The style is ultra-modern, clean, and peaceful, conveying a high-end wellness experience. Sophisticated dark-mode composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7lfHuaAp3C2Z4tZR9CnzmlFpKi6JqYgj-iDAq626h6FyvEwGCrPm9o3VDHh5_DYEML-E77Wlx5V1Mq_PlhRGDeHfgGfPz07rkMWdQ7FQ86oBkMelUBxL9F_8P_LaBR7ipFeS69WM5Mygtv5xvKb7BMOps_wwZhN5bt7kEgNfWrNiVjNgIQ6x5dGRQDRGA2dbOCo_7jpVIoV3fOyRyvy6WEw-8sWlLopKzP02WyNFWVGYobJb5NTTcVqfQUTo6nFLcbcIsaShRZDo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-caps text-[10px] uppercase mb-2 inline-block">Recovery</span>
+<h4 class="font-title-md text-title-md-mobile text-primary">Deep Zen Flow</h4>
+<div class="flex gap-4 mt-1 opacity-80">
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">schedule</span> 20m</span>
+<span class="flex items-center gap-1 font-body-sm text-body-sm"><span class="material-symbols-outlined text-sm">local_fire_department</span> 105 kcal</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Daily Tip Section -->
+<section class="glass-card p-6 rounded-lg border-l-4 border-primary-fixed">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-primary-fixed/10 rounded-full">
+<span class="material-symbols-outlined text-primary-fixed">lightbulb</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md-mobile text-primary">Training Tip</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Increasing your protein intake by 20% this week will significantly aid your muscle recovery after that heavy leg day.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-10 pt-2 bg-white/10 backdrop-blur-2xl border-t border-white/15 shadow-[0_-4px_24px_rgba(171,214,0,0.1)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-[10px] uppercase mt-1">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-[10px] uppercase mt-1">Workouts</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-caps text-[10px] uppercase mt-1">Stats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] uppercase mt-1">Profile</span>
+</button>
+</nav>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary-fixed text-on-primary-fixed rounded-full shadow-lg shadow-primary-fixed/30 flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.2s ease';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Dynamic greeting based on time of day
+        const hours = new Date().getHours();
+        const greetingEl = document.querySelector('h1');
+        if (hours >= 12 && hours < 17) {
+            greetingEl.textContent = 'Good afternoon, Athlete';
+        } else if (hours >= 17 || hours < 5) {
+            greetingEl.textContent = 'Good evening, Athlete';
+        }
+    </script>
+</body></html>

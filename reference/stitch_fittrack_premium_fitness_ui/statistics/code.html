@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Athlete Stats - Performance Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .volt-glow {
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.2);
+        }
+        .chart-gradient-bg {
+            background: linear-gradient(to bottom, rgba(204, 255, 0, 0.15), transparent);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1a1c1c",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#1b1b1d",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "secondary-container": "#474746",
+                        "primary": "#ffffff",
+                        "on-surface-variant": "#c4c9ac",
+                        "surface-container-lowest": "#0c0f0f",
+                        "inverse-surface": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "on-tertiary": "#303032",
+                        "tertiary": "#ffffff",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-bright": "#37393a",
+                        "surface-container-high": "#282a2b",
+                        "background": "#121414",
+                        "surface": "#121414",
+                        "on-tertiary-fixed-variant": "#474649",
+                        "surface-dim": "#121414",
+                        "primary-fixed-dim": "#abd600",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "primary-container": "#c3f400",
+                        "surface-container": "#1e2020",
+                        "inverse-primary": "#506600",
+                        "on-tertiary-container": "#656466",
+                        "tertiary-fixed": "#e4e2e4",
+                        "primary-fixed": "#c3f400",
+                        "on-background": "#e2e2e2",
+                        "on-primary-container": "#556d00",
+                        "on-primary": "#283500",
+                        "outline": "#8e9379",
+                        "tertiary-fixed-dim": "#c8c6c8",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-variant": "#333535",
+                        "tertiary-container": "#e4e2e4",
+                        "surface-tint": "#abd600",
+                        "surface-container-highest": "#333535"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "section-gap": "40px",
+                        "base": "8px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "stack-sm": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "metric-xl": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "metric-xl": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cinematic, close-up portrait of a professional athlete with intense focus, lit by dramatic rim lighting against a dark, tech-inspired background. The style is high-contrast, premium, and emphasizes peak physical performance. Deep blacks are complemented by a hint of neon green from nearby equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXfdDxw78ZPC-tf-5S-k2kumFFxyWt3QiPH4qaw0eyoF3FOGJiWru4b_Zg_d52z5jnoUtqwUBUzDvMKHIRHP9iz5OUPFIO0LGYf9Rmhpb3zP5GUeAi-eqrMEDqOHX7HDuZPZqNS_VUIjqyLHjkdqEznFAie7v9I6pgiflGW7OgXRewYgNagABklnl6Yb-_uXA5auRgnS7xwoOb6emJWRvQbCQrKmhCjtmF3XzFJJ86iZJpPICbgrp9E7qgesSp6NKhqcXOMY6MJAM"/>
+</div>
+<h1 class="font-title-md text-title-md-mobile text-primary">Good morning, Athlete</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">calendar_today</button>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-lg mx-auto">
+<!-- Segmented Control -->
+<div class="flex p-1 bg-surface-container rounded-full mb-stack-lg">
+<button class="flex-1 py-2 rounded-full font-label-caps text-label-caps bg-primary-container text-on-primary-container transition-all" id="view-weekly">WEEKLY</button>
+<button class="flex-1 py-2 rounded-full font-label-caps text-label-caps text-on-surface-variant transition-all hover:text-primary" id="view-monthly">MONTHLY</button>
+</div>
+<!-- Metric Summary Bento Grid -->
+<div class="grid grid-cols-2 gap-stack-md mb-section-gap">
+<div class="glass-card rounded-lg p-stack-lg flex flex-col justify-between aspect-square">
+<div>
+<span class="material-symbols-outlined text-primary-fixed-dim mb-2">route</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant">TOTAL DISTANCE</p>
+</div>
+<div>
+<h2 class="font-metric-xl text-metric-xl text-primary">42.8</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">KILOMETERS</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-stack-lg flex flex-col justify-between aspect-square">
+<div>
+<span class="material-symbols-outlined text-primary-fixed-dim mb-2">pace</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant">AVG PACE</p>
+</div>
+<div>
+<h2 class="font-metric-xl text-metric-xl text-primary">4'52"</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MIN / KM</p>
+</div>
+</div>
+</div>
+<!-- Activity Chart Section -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-stack-md">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Performance</h3>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim">+12% vs LW</span>
+</div>
+<div class="glass-card rounded-lg p-stack-lg h-64 relative overflow-hidden flex flex-col justify-end">
+<!-- Simple Bar Chart Visualization -->
+<div class="flex items-end justify-between h-32 w-full gap-2">
+<div class="flex-1 bg-white/10 rounded-t-sm h-[40%] transition-all hover:bg-primary-container group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity font-bold">4.2k</div>
+</div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[65%] transition-all hover:bg-primary-container group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity font-bold">6.8k</div>
+</div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[55%] transition-all hover:bg-primary-container group relative"></div>
+<div class="flex-1 bg-primary-container volt-glow rounded-t-sm h-[90%] transition-all group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-2 py-1 rounded text-[10px] font-bold">9.4k</div>
+</div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[45%] transition-all hover:bg-primary-container group relative"></div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[70%] transition-all hover:bg-primary-container group relative"></div>
+<div class="flex-1 bg-white/10 rounded-t-sm h-[30%] transition-all hover:bg-primary-container group relative"></div>
+</div>
+<div class="flex justify-between mt-4 border-t border-white/10 pt-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant">MON</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">TUE</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">WED</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">THU</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">FRI</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">SAT</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">SUN</span>
+</div>
+</div>
+</section>
+<!-- Heart Rate Line Chart -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-title-md text-title-md-mobile text-primary">Resting Heart Rate</h3>
+<div class="flex gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">62 BPM AVG</span>
+</div>
+</div>
+<div class="glass-card rounded-lg p-0 h-48 relative overflow-hidden">
+<!-- SVG Line Chart Path -->
+<svg class="w-full h-full" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="lineGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#abd600" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#abd600" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,100 C50,90 80,120 120,80 S180,40 240,70 S320,30 400,50 L400,150 L0,150 Z" fill="url(#lineGrad)"></path>
+<path d="M0,100 C50,90 80,120 120,80 S180,40 240,70 S320,30 400,50" fill="none" stroke="#abd600" stroke-linecap="round" stroke-width="3"></path>
+<!-- Highlight Point -->
+<circle cx="240" cy="70" fill="#000000" r="6" stroke="#abd600" stroke-width="2"></circle>
+</svg>
+<div class="absolute top-4 left-4 bg-background/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+<span class="font-label-caps text-[10px] text-primary">THU: 58 BPM</span>
+</div>
+</div>
+</section>
+<!-- Calories Card -->
+<div class="glass-card rounded-lg p-stack-lg flex items-center gap-stack-lg mb-section-gap">
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/10" cx="40" cy="40" fill="transparent" r="32" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary-container" cx="40" cy="40" fill="transparent" r="32" stroke="currentColor" stroke-dasharray="201" stroke-dashoffset="60" stroke-width="6"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary-container">local_fire_department</span>
+</div>
+<div class="flex-1">
+<p class="font-label-caps text-label-caps text-on-surface-variant">CALORIES BURNED</p>
+<h4 class="font-metric-xl text-metric-xl text-primary">12,450</h4>
+<div class="w-full bg-white/10 h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-container h-full w-[70%]"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-2 bg-white/10 backdrop-blur-2xl border-t border-white/15 rounded-t-xl shadow-[0_-4px_24px_rgba(171,214,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-[10px] mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-[10px] mt-1">Workouts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-caps text-[10px] mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        document.getElementById('view-weekly').addEventListener('click', function() {
+            this.classList.add('bg-primary-container', 'text-on-primary-container');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('view-monthly').classList.remove('bg-primary-container', 'text-on-primary-container');
+            document.getElementById('view-monthly').classList.add('text-on-surface-variant');
+        });
+
+        document.getElementById('view-monthly').addEventListener('click', function() {
+            this.classList.add('bg-primary-container', 'text-on-primary-container');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('view-weekly').classList.remove('bg-primary-container', 'text-on-primary-container');
+            document.getElementById('view-weekly').classList.add('text-on-surface-variant');
+        });
+
+        // Add a micro-interaction for cards
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

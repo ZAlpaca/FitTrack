@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Workouts Catalog - Elite Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .neon-glow {
+            text-shadow: 0 0 8px rgba(204, 255, 0, 0.4);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1a1c1c",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-surface": "#e2e2e2",
+                        "on-tertiary-fixed": "#1b1b1d",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "secondary-container": "#474746",
+                        "primary": "#ffffff",
+                        "on-surface-variant": "#c4c9ac",
+                        "surface-container-lowest": "#0c0f0f",
+                        "inverse-surface": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-secondary": "#313030",
+                        "on-tertiary": "#303032",
+                        "tertiary": "#ffffff",
+                        "on-primary-fixed": "#161e00",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-bright": "#37393a",
+                        "surface-container-high": "#282a2b",
+                        "background": "#121414",
+                        "surface": "#121414",
+                        "on-tertiary-fixed-variant": "#474649",
+                        "surface-dim": "#121414",
+                        "primary-fixed-dim": "#abd600",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "secondary": "#c8c6c5",
+                        "primary-container": "#c3f400",
+                        "surface-container": "#1e2020",
+                        "inverse-primary": "#506600",
+                        "on-tertiary-container": "#656466",
+                        "tertiary-fixed": "#e4e2e4",
+                        "primary-fixed": "#c3f400",
+                        "on-background": "#e2e2e2",
+                        "on-primary-container": "#556d00",
+                        "on-primary": "#283500",
+                        "outline": "#8e9379",
+                        "tertiary-fixed-dim": "#c8c6c8",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-variant": "#333535",
+                        "tertiary-container": "#e4e2e4",
+                        "surface-tint": "#abd600",
+                        "surface-container-highest": "#333535"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "section-gap": "40px",
+                        "base": "8px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "stack-sm": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "metric-xl": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "metric-xl": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black text-on-surface pb-24">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl flex justify-between items-center px-container-margin py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-white/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-contrast close-up portrait of a fit athlete with soft sweat on their brow, illuminated by a sharp side light. The background is a deep, pure black, creating a focused and elite sports aesthetic. The lighting highlights the contours of the face in a professional, moody studio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA50fCh8Vxp1w4OxmSs0pvH7RVueceodFwONciJrvRPmxUszoNu4n7mcHTPfaYKvaiVHeTm89JVT6S88-m_5gCNml8iHak_cBp4LSa4jEuA6gqeO4FJPGRx6redwhF0LIBPLIBHhNqn9KF4jn3svJKesREaHTKChK_wNh7KCL2YgwZ6v-YGk02MeaIinlggDLmrP9c8Nbv2_YPDb_LVLYSPbl5Y7o4PA29MwwVlIFJQN1jWrYeCuiJgfxhApBFI5tcdLjE0njHw6I0"/>
+</div>
+<h1 class="font-title-md text-title-md-mobile text-primary">Workouts</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</button>
+</header>
+<main class="mt-20 px-container-margin">
+<!-- Search Bar -->
+<section class="mb-stack-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60 group-focus-within:text-primary-fixed-dim transition-colors">search</span>
+<input class="w-full bg-white/10 border-none rounded-full py-4 pl-12 pr-6 text-body-lg font-body-lg placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-primary-fixed-dim transition-all" placeholder="Search workouts, trainers..." type="text"/>
+</div>
+</section>
+<!-- Filters (Chips) -->
+<section class="flex gap-3 overflow-x-auto hide-scrollbar mb-8">
+<button class="px-6 py-2 rounded-full bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps whitespace-nowrap">ALL</button>
+<button class="px-6 py-2 rounded-full bg-white/10 border border-white/10 text-on-surface font-label-caps text-label-caps whitespace-nowrap hover:bg-white/20 transition-colors">BEGINNER</button>
+<button class="px-6 py-2 rounded-full bg-white/10 border border-white/10 text-on-surface font-label-caps text-label-caps whitespace-nowrap hover:bg-white/20 transition-colors">INTERMEDIATE</button>
+<button class="px-6 py-2 rounded-full bg-white/10 border border-white/10 text-on-surface font-label-caps text-label-caps whitespace-nowrap hover:bg-white/20 transition-colors">EXPERT</button>
+</section>
+<!-- Category Grid (The Bento/Large Card Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- HIIT Card -->
+<div class="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A high-intensity interval training session featuring an athlete sprinting on a dark, reflective track. Vivid neon green light trails follow the movement, cutting through a dark, foggy background. The atmosphere is energetic and powerful, with deep shadows and high-octane lighting that emphasizes speed and performance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCla54oiBmNId_SjZuPf0jz0WrJNsJgf8Y0suR9Wo29gbNEb2ahiq246wjIDbHiADbM0zlrcZ1UPk5bfQ2YTGZP1zj7d0E0LC7Dg3nBv1DdAlANw9HhPxNpwG2sQvTNKXCpJ3Vr_-RefK7cF0odhyPhEWK9GlOieewi7QlsFQs_MWLUhwnlMfN4yJTv9hx4Sq204-i55rIawgujYixbTFKLoEr0N8T6-z4zmAGRQ8rRjCfhyDCs0pEyggF5xq46cDV4zSPwAsYz9JY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="glass-card p-4 rounded-lg flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">HIIT</h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps uppercase">25 MIN</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">HARD</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Strength Card -->
+<div class="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A dramatic shot of a heavy-duty gym environment where an athlete is lifting a glowing, chrome-finished barbell. Dust particles are suspended in sharp beams of cold blue and neon green light against a pitch-black background. The scene is industrial and premium, focusing on the texture of iron and the intensity of strength training." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABGRG_BQLtDcZOpaGMhU19JpxtE6w-0b12w2wR1bpIwBaasg-IxCFvdrQKFvZUNT00-IwUScA9v9cCIYPa5Rqg0v2lOhOHYTW8ks-4DUJsoIBFw21p36gh2B1zTq8r7IYl-VFowazYp1hA4lEt5Ma1kObE4nw4CxZng9jG6jjUNxVfTY0n3QzrrOR_Pc_FSdEcoYQ8lOPAEuwY6KWNxe61DUtyCaRu7as4xwxPAaaLI-HeOHy19uezmYZHB8DVhFTuzEx2cm-VkPI')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="glass-card p-4 rounded-lg flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Strength</h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps uppercase">45 MIN</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">ELITE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Yoga Card -->
+<div class="relative h-80 rounded-lg overflow-hidden group cursor-pointer md:col-span-2">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A serene yoga studio with a minimalist design, featuring a person in a graceful pose on a dark mat. Subtle holographic light refractions dance across the floor, which is made of polished dark stone. The lighting is soft and atmospheric, with a single neon green accent line tracing the silhouette of the practitioner, blending tranquility with high-tech aesthetics." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaxo_JKafPwCHZzJC4F1vHgMEjlQpqdROgbRcgbnC1hQ3Bs_3c1eoWtT54k6TsMMzsiV4xvBtZeRcWmbu5lqbEWJTREuEUQ6N4pZxu-i1nBawhJP7qKS8uy1-qPzbMBi65ElZOfPgYy8aOi90G-F9M5BDlC6TRes9O86--4Io43PaoSNcMOuS_jlrAvYp1MMPSmphbHI_LvfQKUG0GntmrLJodI_OJhptU372N7bo6_sj4nSBjBrXWV3gaHmUaY6TlWgfEj_HJ_gk')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="glass-card p-4 rounded-lg flex flex-col gap-2 max-w-sm">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Zen Yoga</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">Restorative flow for mental clarity.</p>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps uppercase">30 MIN</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">CALM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cycling Card -->
+<div class="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A futuristic indoor cycling studio with rows of high-end stationary bikes. The room is dark, illuminated by pulsing neon green and violet LED strips that wrap around the walls and ceiling. An athlete is mid-sprint, their body leaning forward in motion, captured with a slight motion blur that suggests extreme speed and rhythm." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrJP1UwFAyBackuyqu-TjbA_fpiatD543gyEjeEf3l7md_dNEe6JJMLlrhbAf47Zbp98mMyQPUtTPllcIusicgYsVNGdzrby3AHQcI0hfNRNZpt_-qyJ98XuF4i9IRo-60wQt531LInaFiGRrMh7HJITT4jKE3208_e0doWQdFX3DvrGWpt4YxuAFPVKcPzzRlEIPnioQMzWDSDR5Ig4hjQlQjWGryv_Cn3wR0iRw7-8NQMLpW8Tcj2VfO5nub6BAa445NSrdbXdg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="glass-card p-4 rounded-lg flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Cycling</h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps uppercase">40 MIN</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">MEDIUM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobility Card -->
+<div class="relative h-80 rounded-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A focused mobility session in a high-tech training facility. The lighting is crisp and cool, featuring glowing green geometric overlays on the screen that map the athlete's joint movements. The background is a sophisticated dark charcoal gray, creating a professional and data-driven wellness environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCI681M52lNgyZsmuHHoWRorGsF7CpaXEQW1m40-AFkQuvw8KLMDfmmWx--AKZxR_h-p4T2b6NpmFYGpofCE2taWNHaNNOWcH8_UEOGCdq__4PAADpK5FE1REsCUrNpaSHIwvpjO-pkxPrK70PHWFAMfzfvKngFLNkNbhUmprwxLNgA4PGb9bYxW75kGBsmkG3GrQsML6FPyqfKbPmsvSs78-BfanGM28Y9ziwGxeX_-5n37EpKEl2BEKSgDA5KOsHs2WwY-LEJli8')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="glass-card p-4 rounded-lg flex flex-col gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Mobility</h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="font-label-caps text-label-caps uppercase">15 MIN</span>
+</div>
+<div class="flex items-center gap-1 text-primary-fixed-dim neon-glow">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-label-caps text-label-caps uppercase">EASY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Section -->
+<section class="mt-section-gap mb-12">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-stack-lg">Daily Recommendation</h3>
+<div class="bg-white/5 border border-white/10 rounded-lg p-6 flex flex-col md:flex-row gap-6 items-center">
+<div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-performance fitness coach with an intense and inspiring expression, captured in a dark studio with dramatic rim lighting. The lighting is a mix of deep shadows and vibrant volt-green highlights that accentuate the muscles and movement. The style is premium digital photography, professional and authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbR4_-8k7Fl-pFUwzhhxJcMfjU_pLsaA8AaK_EKwfofQ89XwYO6l87blP7vs0ILK_F4ldvzhhiKzeOYzwI1OxbUD4txqnxjYqqtEoTVvZcpfa2xf1DV34rQSFy2TJ_QVkPVENSJl3XkOVipYtZAam6FpgZHfSPa2y_KyvC1MPfiYT8w4o1oyEzApTd1p_9NYvEd4pgYoGI0yaBgAunEM2sRrhIbgcxiQEg9Xk7kgIV_IScIR1R1G1kTL-Ar3bSZAfXJyz86TRVKkg"/>
+</div>
+<div class="flex-1">
+<span class="text-primary-fixed-dim font-label-caps text-label-caps tracking-widest mb-2 block">COACH'S PICK</span>
+<h4 class="font-title-md text-title-md-mobile text-primary mb-2">Morning Power Flow</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-6">Start your day with this balanced routine of explosive strength and deep mobility work. Designed by Coach Alex.</p>
+<button class="bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-bold active:scale-95 transition-all shadow-[0_0_20px_rgba(204,255,0,0.3)]">
+                        START NOW
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 rounded-t-xl bg-white/10 backdrop-blur-2xl border-t border-white/15 shadow-[0_-4px_24px_rgba(171,214,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-[10px] mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container font-bold scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-caps text-[10px] mt-1 uppercase">Workouts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-caps text-[10px] mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.glass-card').style.background = 'rgba(255, 255, 255, 0.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.glass-card').style.background = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+
+        // Search bar active state simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,6 @@
+{
+  "name": "Apex Fitness",
+  "description": "A high-performance interactive wellness hub for athletes. Includes activity rings, workouts directory, performance charts, workout scheduler, and personalized health indicators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
